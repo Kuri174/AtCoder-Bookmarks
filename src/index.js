@@ -6,13 +6,15 @@ import TweetInput from './TweetInput';
 import './style.css';
 
 function App() {
+  const data = localStorage.getItem('atcoder');
+  console.log(data);
   const [tweets, setTweets] = React.useState([
     {
       id: 0,
       icon: '🌽',
-      displayName: 'もろこし太郎',
+      displayName: null,
       accountName: 'morokoshi',
-      content: '今日も1日もろこしがうまい'
+      content: null
     },
     {
       id: 1,
