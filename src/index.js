@@ -7,7 +7,7 @@ import './style.css';
 
 function App() {
   const data = localStorage.getItem('atcoder');
-  console.log(data);
+  console.log("local", data);
   const [tweets, setTweets] = React.useState([
     {
       id: 0,
