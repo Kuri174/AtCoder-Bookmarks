@@ -1,17 +1,38 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import Timeline from './Timeline';
+import TweetInput from './TweetInput';
+import './style.css';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+function App() {
+  const [tweets, setTweets] = React.useState([
+    {
+      id: 0,
+      icon: '🌽',
+      displayName: 'もろこし太郎',
+      accountName: 'morokoshi',
+      content: '今日も1日もろこしがうまい'
+    },
+    {
+      id: 1,
+      icon: '🦐',
+      displayName: 'エビデンス',
+      accountName: 'evidence',
+      content: 'かにみそたべたい'
+    }
+  ]);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+  // addTweet関数はuseCallbackで作成する
+  // これも毎回作成していると重くなるので
+  const addTweet = React.useCallback((tweet) => setTweets((prev) => [tweet, ...prev]), [setTweets]);
+
+  return (
+    <div>
+      <TweetInput addTweet={addTweet} />
+      <Timeline tweets={tweets} />
+    </div>
+  );
+}
+
+const target = document.querySelector('#app');
+ReactDOM.render(<App />, target);
