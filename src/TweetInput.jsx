@@ -22,7 +22,7 @@ function TweetInput(props) {
         content: textareaRef.current.value
       });
     }
-  }, [textareaRef.current, props.addTweet]);
+  }, [props]);
 
   return (
     <div>
