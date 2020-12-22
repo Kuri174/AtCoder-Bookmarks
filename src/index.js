@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Topbar from './Topbar';
 import Timeline from './Timeline';
 import TweetInput from './TweetInput';
 import './style.css';
@@ -28,6 +29,7 @@ function App() {
 
   return (
     <div>
+      <Topbar menuButton="更新" title="AtCoder-Bookmarks"/>
       <TweetInput addTweet={addTweet} />
       <Timeline tweets={tweets} />
     </div>
