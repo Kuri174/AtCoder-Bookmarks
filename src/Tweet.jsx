@@ -4,7 +4,6 @@ function Tweet(props) {
     return (
         <div className="tweet">
             <img src={Icon}  alt="アイコン"　width="40" height="40"/>
-            <a href>  </a>
             <div className="body-container">
                 <div className="status-display">
                     <a href={props.url}>{props.problemName}</a>
