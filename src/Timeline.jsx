@@ -1,7 +1,6 @@
 import Tweet from './Tweet.jsx';
 
 function Timeline(props) {
-    // propsからTweetのリストを作る
     const tweetList = props.tweets.map((tw) => (
         <Tweet
             key={tw.id}
@@ -12,7 +11,6 @@ function Timeline(props) {
         />
     ));
 
-    // 表示する
     return <div className="timeline">{tweetList}</div>;
 }
 
