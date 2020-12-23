@@ -6,8 +6,8 @@ function Timeline(props) {
         <Tweet
             key={tw.id}
             icon={tw.icon}
-            displayName={tw.displayName}
-            accountName={tw.accountName}
+            problemName={tw.problemName}
+            url={tw.url}
             content={tw.content}
         />
     ));

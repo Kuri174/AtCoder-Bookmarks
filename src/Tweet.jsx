@@ -1,12 +1,13 @@
+import Icon from './Images/atcoder.svg'
 
 function Tweet(props) {
     return (
         <div className="tweet">
-            <div className="icon-container">{props.icon}</div>
+            <img src={Icon}  alt="アイコン"　width="40" height="40"/>
+            <a href>  </a>
             <div className="body-container">
                 <div className="status-display">
-                    <span className="display-name">{props.displayName}</span>
-                    <span className="account-name">@{props.accountName}</span>
+                    <a href={props.url}>{props.problemName}</a>
                 </div>
                 <div className="content">{props.content}</div>
             </div>
