@@ -5,7 +5,7 @@ import Timeline from './Timeline';
 import './style.css';
 
 function App() {
-  const obj = JSON.parse(localStorage.getItem("atcoder"));
+  const obj = JSON.parse(localStorage.getItem("atcoder") || "{}");
   const [tweets] = React.useState([
     {
       id: 0,
