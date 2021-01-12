@@ -1,17 +1,15 @@
-import Tweet from './Tweet.jsx';
+import Tweet from "./Tweet.jsx";
 
 function Timeline(props) {
-    const tweetList = props.tweets.map((tw) => (
-        <Tweet
-            key={tw.id}
-            icon={tw.icon}
-            problemName={tw.problemName}
-            url={tw.url}
-            content={tw.content}
-        />
-    ));
-
-    return <div className="timeline">{tweetList}</div>;
+  const dataList = props.tweets;
+  
+  const listItems = dataList.map((item) => (
+    <Tweet 
+        name = {item.name}
+        url = {item.url}
+    />
+  ));
+  return <ul>{listItems}</ul>;
 }
 
-export default Timeline
+export default Timeline;
