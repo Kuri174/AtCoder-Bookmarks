@@ -16,6 +16,19 @@ async function ProblemData(contestId) {
   }
 }
 
+async function getDiffculty(contestId) {
+  try {
+    const axios = require("axios");
+    const data = await axios.get(
+      "https://kenkoooo.com/atcoder/resources/problem-models.json"
+    );
+    return data.data[contestId].difficulty;
+  } catch (error) {
+    const { status, statusText } = error.response;
+    console.log(`Error! HTTP Status: ${status} ${statusText}`);
+  }
+}
+
 async function getLocalData(localData) {
   let dataList = [];
   for (const data of localData) {
@@ -24,10 +37,12 @@ async function getLocalData(localData) {
     while (data.problemUrl[idx] !== "/") contestId += data.problemUrl[idx--];
     contestId = contestId.split("").reverse().join(""); // 反転
     const Item = await ProblemData(contestId);
+    const Difficulty = await getDiffculty(Item.id);
     dataList.push({
       userName: data.userName,
       contestId: Item.contest_id,
       problemName: Item.title,
+      difficulty: Difficulty,
       problemUrl: data.problemUrl,
     });
   }

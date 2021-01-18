@@ -50,15 +50,19 @@ function stableSort(array, comparator) {
 
 const headCells = [
   {
-    id: "name",
+    id: "problemName",
     numeric: false,
     disablePadding: true,
-    label: "Dessert (100g serving)",
+    label: "Problem",
   },
-  { id: "calories", numeric: true, disablePadding: false, label: "Calories" },
-  { id: "fat", numeric: true, disablePadding: false, label: "Fat (g)" },
-  { id: "carbs", numeric: true, disablePadding: false, label: "Carbs (g)" },
-  { id: "protein", numeric: true, disablePadding: false, label: "Protein (g)" },
+  { id: "contestId", numeric: true, disablePadding: false, label: "Contest" },
+  {
+    id: "difficulty",
+    numeric: true,
+    disablePadding: false,
+    label: "Difficulty",
+  },
+  { id: "favos", numeric: true, disablePadding: false, label: "Favos" },
 ];
 
 function EnhancedTableHead(props) {
@@ -217,8 +221,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
+function createData(problemName, contestId, difficulty, favos, problemUrl) {
+  return { problemName, contestId, difficulty, favos, problemUrl };
 }
 
 export default function EnhancedTable() {
@@ -241,7 +245,14 @@ export default function EnhancedTable() {
       const result = await getProblemData();
       console.log(result);
       const res = result.map((item) =>
-        createData("Cupcake", 305, 3.7, 67, 4.3)
+        //createData("Cupcake", "aaa", "bbb", 67, 4.3)
+        createData(
+          item.problemName,
+          item.contestId,
+          item.difficulty,
+          3,
+          item.problemUrl
+        )
       );
       //アンマウントされていなければステートを更新
       if (!unmounted) {
@@ -332,17 +343,17 @@ export default function EnhancedTable() {
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                  const isItemSelected = isSelected(row.name);
+                  const isItemSelected = isSelected(row.problemName);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.name)}
+                      onClick={(event) => handleClick(event, row.problemName)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.name}
+                      key={row.problemName}
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">
@@ -357,12 +368,11 @@ export default function EnhancedTable() {
                         scope="row"
                         padding="none"
                       >
-                        {row.name}
+                        <a href={row.problemUrl}>{row.problemName}</a>
                       </TableCell>
-                      <TableCell align="right">{row.calories}</TableCell>
-                      <TableCell align="right">{row.fat}</TableCell>
-                      <TableCell align="right">{row.carbs}</TableCell>
-                      <TableCell align="right">{row.protein}</TableCell>
+                      <TableCell align="right">{row.contestId}</TableCell>
+                      <TableCell align="right">{row.difficulty}</TableCell>
+                      <TableCell align="right">{row.favos}</TableCell>
                     </TableRow>
                   );
                 })}
