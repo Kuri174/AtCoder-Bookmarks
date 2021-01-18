@@ -146,6 +146,12 @@ const useToolbarStyles = makeStyles((theme) => ({
   },
 }));
 
+let deleteList = [];
+
+function rowDelete (deleteList) {
+  console.log(deleteList);
+}
+
 const EnhancedTableToolbar = (props) => {
   const classes = useToolbarStyles();
   const { numSelected } = props;
@@ -179,7 +185,11 @@ const EnhancedTableToolbar = (props) => {
       {numSelected > 0 ? (
         <Tooltip title="Delete">
           <IconButton aria-label="delete">
-            <DeleteIcon />
+            <DeleteIcon
+              onClick={() => {
+                rowDelete(deleteList);
+              }}
+            />
           </IconButton>
         </Tooltip>
       ) : (
@@ -233,7 +243,6 @@ export default function EnhancedTable() {
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  // const [Items, changeItems] = React.useState([]);
   const [rows, changeItems] = React.useState([]);
 
   React.useEffect(() => {
@@ -245,7 +254,6 @@ export default function EnhancedTable() {
       const result = await getProblemData();
       console.log(result);
       const res = result.map((item) =>
-        //createData("Cupcake", "aaa", "bbb", 67, 4.3)
         createData(
           item.problemName,
           item.contestId,
@@ -273,11 +281,11 @@ export default function EnhancedTable() {
   };
 
   const handleSelectAllClick = (event) => {
-    if (event.target.checked) {
-      const newSelecteds = rows.map((n) => n.name);
-      setSelected(newSelecteds);
-      return;
-    }
+    // if (event.target.checked) {
+    //   const newSelecteds = rows.map((n) => n.name);
+    //   setSelected(newSelecteds);
+    //   return;
+    // }
     setSelected([]);
   };
 
@@ -299,6 +307,7 @@ export default function EnhancedTable() {
     }
 
     setSelected(newSelected);
+    deleteList = newSelected;
   };
 
   const handleChangePage = (event, newPage) => {
