@@ -15,6 +15,7 @@ const useStyles = makeStyles({
   root: {
     // flexGrow: 1,
     // width: "23.7rem",
+    width: "25%",
     minWidth: 275,
   },
   bullet: {
@@ -81,14 +82,8 @@ export default function CenteredGrid() {
               <Typography variant="h5" component="h2">
                 {item.Name}
               </Typography>
-              <Typography color="textSecondary">adjective</Typography>
-              <Typography variant="body2" component="p">
-                well meaning and kindly.
-                <br />
-                {'"a benevolent smile"'}
-              </Typography>
+              <Typography color="textSecondary">メモ</Typography>
             </CardContent>
-            <CardActions>メモ</CardActions>
           </Button>
         </Card>
       </Grid>

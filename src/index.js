@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Topbar from "./Topbar";
 import Tabs from "./Tabs";
-import Grid from "./Grid";
 import "./style.css";
 
 function App() {

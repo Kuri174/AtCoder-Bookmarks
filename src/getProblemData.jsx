@@ -1,4 +1,4 @@
-async function ProblemData(contest_id) {
+async function ProblemData(contestId) {
   try {
     const axios = require("axios");
     const res = await axios.get(
@@ -6,7 +6,7 @@ async function ProblemData(contest_id) {
     );
     const items = res.data;
     for (const item of items) {
-      if (item.id === contest_id) {
+      if (item.id === contestId) {
         return item;
       }
     }
@@ -16,22 +16,30 @@ async function ProblemData(contest_id) {
   }
 }
 
-export default async function getLocalData(data) {
-  let List = [];
-  for (const elem of data) {
+async function getLocalData(localData) {
+  let dataList = [];
+  for (const data of localData) {
     let contestId = "";
-    let idx = elem.url.length - 1;
-    while (elem.url[idx] !== "/") {
-      contestId += elem.url[idx];
-      idx--;
-    }
-    contestId = contestId.split("").reverse().join("");
+    let idx = data.problemUrl.length - 1;
+    while (data.problemUrl[idx] !== "/") contestId += data.problemUrl[idx--];
+    contestId = contestId.split("").reverse().join(""); // 反転
     const Item = await ProblemData(contestId);
-    List.push({
-      Id: Item.contest_id,
-      Name: Item.title,
-      Url: elem.url,
+    dataList.push({
+      userName: data.userName,
+      contestId: Item.contest_id,
+      problemName: Item.title,
+      problemUrl: data.problemUrl,
     });
   }
-  return List;
+  return dataList;
+}
+
+export default async function getProblemData() {
+  try {
+    const localData = await JSON.parse(localStorage.getItem("atcoder"));
+    const res = await getLocalData(localData);
+    return res;
+  } catch (e) {
+    return [];
+  }
 }

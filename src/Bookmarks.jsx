@@ -6,7 +6,6 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import getProblemData from "./getProblemData";
-import Grid from "./Grid";
 
 const useStyles = makeStyles({
   root: {
@@ -26,16 +25,6 @@ const useStyles = makeStyles({
   },
 });
 
-async function restoreData() {
-  try {
-    const localData = await JSON.parse(localStorage.getItem("atcoder"));
-    const res = await getProblemData(localData);
-    return res;
-  } catch (e) {
-    return [];
-  }
-}
-
 export default function SimpleCard() {
   const [Items, changeItems] = React.useState([]);
 
@@ -45,8 +34,7 @@ export default function SimpleCard() {
     //非同期無名関数の即時呼び出し
     (async () => {
       //非同期でデータを取得
-      const result = await restoreData();
-
+      const result = await getProblemData();
       //アンマウントされていなければステートを更新
       if (!unmounted) {
         changeItems(result);
@@ -59,27 +47,26 @@ export default function SimpleCard() {
     };
   }, []);
 
-  function CardList({ items }) {
-    console.log(items); 
+  function CardList({ items }) { 
     const classes = useStyles();
     return items.map((item) => (
       <Card className={classes.root}>
         <Button
           variant="contained"
           onClick={() => {
-            window.location.href = item.Url;
+            window.location.href = item.problemUrl;
           }}
         >
           <CardContent>
             <Typography color="textSecondary" gutterBottom>
-              {item.Id}
+              {item.contestId}
             </Typography>
             <Typography variant="h5" component="h2">
-              {item.Name}
+              {item.problemName}
             </Typography>
             <Typography color="textSecondary">adjective</Typography>
             <Typography variant="body2" component="p">
-              well meaning and kindly.
+              {item.userName}
               <br />
               {'"a benevolent smile"'}
             </Typography>

@@ -7,7 +7,7 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Bookmarks from "./Bookmarks";
-import Grid from "./Grid";
+import SortTable from "./SortTable";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -77,10 +77,10 @@ export default function ScrollableTabsButtonAuto() {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <Grid />
+        <Bookmarks />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Bookmarks />
+        <SortTable />
       </TabPanel>
       <TabPanel value={value} index={2}></TabPanel>
       <TabPanel value={value} index={3}></TabPanel>
