@@ -6,7 +6,9 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import SortTable from "./SortTable";
+import AtCoder from "./AtCoder";
+import AOJ from "./AOJ";
+import CodeForces from "./CodeForces";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -70,18 +72,18 @@ export default function ScrollableTabsButtonAuto() {
           aria-label="scrollable auto tabs example"
         >
           <Tab label="AtCoder" {...a11yProps(0)} />
-          <Tab label="Codeforces" {...a11yProps(1)} />
-          <Tab label="AOJ" {...a11yProps(2)} />
-          <Tab label="yukicoder" {...a11yProps(3)} />
+          <Tab label="AOJ" {...a11yProps(1)} />
+          <Tab label="Codeforces" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <SortTable />
+        <AtCoder />
       </TabPanel>
       <TabPanel value={value} index={1}>
+        <AOJ />
       </TabPanel>
-      <TabPanel value={value} index={2}></TabPanel>
-      <TabPanel value={value} index={3}></TabPanel>
+      <TabPanel value={value} index={2}>
+      </TabPanel>
     </div>
   );
 }

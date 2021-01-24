@@ -1,11 +1,10 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import getProblemData from "./getProblemData";
+import AOJData from "./AOJData";
 
 const useStyles = makeStyles({
   root: {
@@ -27,6 +26,11 @@ const useStyles = makeStyles({
 
 export default function SimpleCard() {
   const [Items, changeItems] = React.useState([]);
+  const [UserId, changeId] = React.useState("");
+
+  function GetUserId() {
+    changeId(document.getElementById("input_userid").value);
+  }
 
   React.useEffect(() => {
     let unmounted = false;
@@ -34,7 +38,7 @@ export default function SimpleCard() {
     //非同期無名関数の即時呼び出し
     (async () => {
       //非同期でデータを取得
-      const result = await getProblemData();
+      const result = await AOJData(UserId);
       //アンマウントされていなければステートを更新
       if (!unmounted) {
         changeItems(result);
@@ -47,7 +51,7 @@ export default function SimpleCard() {
     };
   }, []);
 
-  function CardList({ items }) { 
+  function CardList({ items }) {
     const classes = useStyles();
     return items.map((item) => (
       <Card className={classes.root}>
@@ -59,22 +63,27 @@ export default function SimpleCard() {
         >
           <CardContent>
             <Typography color="textSecondary" gutterBottom>
-              {item.contestId}
+              {item.problemId}
             </Typography>
             <Typography variant="h5" component="h2">
-              {item.problemName}
-            </Typography>
-            <Typography color="textSecondary">adjective</Typography>
-            <Typography variant="body2" component="p">
-              {item.userName}
-              <br />
-              {'"a benevolent smile"'}
+              {item.problemTitle}
             </Typography>
           </CardContent>
-          <CardActions>メモ</CardActions>
         </Button>
       </Card>
     ));
   }
-  return <CardList items={Items} />;
+  return (
+    <div>
+      <input type="text" id="input_userid"></input>
+      <input
+        type="button"
+        onClick={() => {
+          GetUserId();
+        }}
+        value="Confirm"
+      />
+      <CardList items={Items} />
+    </div>
+  );
 }

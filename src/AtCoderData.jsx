@@ -16,7 +16,7 @@ async function ProblemData(contestId) {
   }
 }
 
-async function getDiffculty(contestId) {
+async function GetDifficulty(contestId) {
   try {
     const axios = require("axios");
     const data = await axios.get(
@@ -29,7 +29,7 @@ async function getDiffculty(contestId) {
   }
 }
 
-async function getLocalData(localData) {
+async function GetData(localData) {
   let dataList = [];
   for (const data of localData) {
     let contestId = "";
@@ -37,7 +37,7 @@ async function getLocalData(localData) {
     while (data.problemUrl[idx] !== "/") contestId += data.problemUrl[idx--];
     contestId = contestId.split("").reverse().join(""); // 反転
     const Item = await ProblemData(contestId);
-    const Difficulty = await getDiffculty(Item.id);
+    const Difficulty = await GetDifficulty(Item.id);
     dataList.push({
       userName: data.userName,
       contestId: Item.contest_id,
@@ -49,10 +49,10 @@ async function getLocalData(localData) {
   return dataList;
 }
 
-export default async function getProblemData() {
+export default async function AtCoderData() {
   try {
     const localData = await JSON.parse(localStorage.getItem("atcoder"));
-    const res = await getLocalData(localData);
+    const res = await GetData(localData);
     return res;
   } catch (e) {
     return [];
