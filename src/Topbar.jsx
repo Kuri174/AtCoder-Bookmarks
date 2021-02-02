@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import Menu from "./Menu";
+import Help from "./Help";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,18 +30,18 @@ export default function ButtonAppBar() {
         style={{ color: "#e0f2f1", backgroundColor: "#004d40" }}
       >
         <Toolbar>
+          <Typography variant="h6" className={classes.title}>
+            AtCoder Bookmarks
+          </Typography>
+          {/* <Button color="inherit">Login</Button> */}
           <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="menu"
           >
-            <Menu />
+            <Help />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            AtCoder Bookmarks
-          </Typography>
-          <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
     </div>
