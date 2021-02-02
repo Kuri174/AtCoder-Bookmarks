@@ -66,7 +66,7 @@ export default function CustomizedMenus() {
       />
       <StyledMenu
         onClick={window.open(
-          "https://qiita.com/shuntaro_tamura/items/99adbe51132e0fb3c9e9",
+          "https://github.com/Kuri174/AtCoder-Bookmarks",
           "_blank"
         )}
       ></StyledMenu>
