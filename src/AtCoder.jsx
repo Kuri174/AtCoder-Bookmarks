@@ -358,7 +358,6 @@ export default function EnhancedTable() {
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.problemName)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
@@ -369,6 +368,9 @@ export default function EnhancedTable() {
                         <Checkbox
                           checked={isItemSelected}
                           inputProps={{ "aria-labelledby": labelId }}
+                          onClick={(event) =>
+                            handleClick(event, row.problemName)
+                          }
                         />
                       </TableCell>
                       <TableCell
@@ -377,7 +379,9 @@ export default function EnhancedTable() {
                         scope="row"
                         padding="none"
                       >
-                        <a href={row.problemUrl}>{row.problemName}</a>
+                        <a href={row.problemUrl} target="_blank">
+                          {row.problemName}
+                        </a>
                       </TableCell>
                       <TableCell align="right">{row.contestId}</TableCell>
                       <TableCell align="right">{row.difficulty}</TableCell>
