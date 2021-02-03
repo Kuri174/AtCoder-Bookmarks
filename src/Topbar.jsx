@@ -3,10 +3,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
-import Menu from "./Menu";
-import Help from "./Help";
+import HelpIcon from "@material-ui/icons/Help";
+// import Menu from "./Menu";
+// import Help from "./Help";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,7 +40,7 @@ export default function ButtonAppBar() {
             color="inherit"
             aria-label="menu"
           >
-            <Help />
+            <HelpIcon />
           </IconButton>
         </Toolbar>
       </AppBar>
