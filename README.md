@@ -4,10 +4,10 @@
 
 https://chrome.google.com/webstore/detail/tampermonkey-beta/gcalenpjmijncebpfijmoaglllgpjagf
 
-・スクリプトをインストール
+・ユーザスクリプトをインストール
 
 https://greasyfork.org/ja/scripts/421119-atcoder-bookmarks
 
-・AtCoderの問題の横にある星形のボタンをクリック
+・AtCoderの問題名の横にある星形ボタンをクリック
 
 ![Imgur](https://i.imgur.com/TEsjWlS.png)
