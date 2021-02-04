@@ -6,7 +6,6 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import HelpIcon from "@material-ui/icons/Help";
 // import Menu from "./Menu";
-// import Help from "./Help";
 
 const useStyles = makeStyles((theme) => ({
   root: {
