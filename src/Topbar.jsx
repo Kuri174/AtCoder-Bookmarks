@@ -39,7 +39,12 @@ export default function ButtonAppBar() {
             color="inherit"
             aria-label="menu"
           >
-            <HelpIcon />
+            <HelpIcon
+              onClick={() => {
+                window.location.href =
+                  "https://github.com/Kuri174/AtCoder-Bookmarks";
+              }}
+            />
           </IconButton>
         </Toolbar>
       </AppBar>
