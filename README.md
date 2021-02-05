@@ -10,7 +10,7 @@ https://greasyfork.org/ja/scripts/421119-atcoder-bookmarks
 
 ・AtCoderの問題名の横にある星形ボタンをクリック
 
-![Imgur](https://i.imgur.com/TEsjWlS.png)
+![Imgur](https://imgur.com/0D8U51x.png)
 
 ・AtCoder Bookmarksに反映される
 
